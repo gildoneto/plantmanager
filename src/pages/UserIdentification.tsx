@@ -4,32 +4,48 @@ import {
     StyleSheet,
     View,
     Text,
-    TextInput
+    TextInput,
+    KeyboardAvoidingView,
+    Platform
 } from 'react-native';
+
+import { Button } from '../components/Button';
+
+
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 export function UserIdentification() {
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
-                <View style={styles.form}>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior={Platform.OS === 'android' ? 'height' : 'padding'}
+            >
+                <View style={styles.content}>
+                    <View style={styles.form}>
+                        <View style={styles.header}>
+                            <Text style={styles.emoji}>
+                                😉
+                        </Text>
 
-                    <Text style={styles.emoji}>
-                        😉
-                    </Text>
+                            <Text style={styles.title}>
+                                How can we{'\n'}
+                            call you?
+                        </Text>
+                        </View>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Type your name"
+                        />
+                        <View style={styles.footer}>
+                            <Button />
+                        </View>
 
-                    <Text style={styles.title}>
-                        How can we{'\n'}
-                        call you?
-                    </Text>
+                    </View>
 
-                    <TextInput
-                        style={styles.input}
-                    />
                 </View>
-
-            </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }
@@ -52,6 +68,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 54,
         alignItems: 'center'
     },
+    header: {
+        alignItems: 'center'
+    },
     emoji: {
         fontSize: 44
     },
@@ -72,5 +91,10 @@ const styles = StyleSheet.create({
         color: colors.heading,
         fontFamily: fonts.heading,
         marginTop: 20
+    },
+    footer: {
+        width: '100%',
+        marginTop: 40,
+        paddingHorizontal: 20
     }
 });
