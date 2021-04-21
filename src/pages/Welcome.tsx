@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Text, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import {
+    SafeAreaView,
+    Text,
+    Image,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions
+} from 'react-native';
 
 import wateringImg from '../../assets/watering.png'
 import colors from '../styles/colors';
 import { Button } from '../components/Button';
 
 export function Welcome() {
-    const [visible, setVisible] = useState(false);
-
-    function handleVisibility() {
-
-    }
     return (
-
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>
                 Manage {'\n'}
@@ -20,25 +21,35 @@ export function Welcome() {
                 on a easy way
             </Text>
 
-            <Image source={wateringImg} style={styles.image} />
+            <Image
+                source={wateringImg}
+                style={styles.image}
+                resizeMode="contain"
+            />
 
             <Text style={styles.subtitle}>
                 Don't forget to water your plants.
                 We will always remind you when you need.
             </Text>
 
-            <Button title="Next" />
+            <TouchableOpacity
+                style={styles.button}
+                activeOpacity={0.3}
+            >
+                <Text style={styles.buttonText}>
+                    >
+                </Text>
+            </TouchableOpacity>
+
         </SafeAreaView>
     )
-
-
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
     title: {
         fontSize: 32,
@@ -54,8 +65,20 @@ const styles = StyleSheet.create({
         color: colors.heading
     },
     image: {
-        width: 292,
-        height: 284
+        height: Dimensions.get('window').width * 0.7
+    },
+    button: {
+        backgroundColor: colors.green,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 16,
+        marginBottom: 10,
+        height: 56,
+        width: 56
+    },
+    buttonText: {
+        color: colors.white,
+        fontSize: 24
     }
 
 });
