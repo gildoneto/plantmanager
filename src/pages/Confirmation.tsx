@@ -24,12 +24,14 @@ export function Confirmation() {
                 </Text>
 
                 <Text style={styles.subtitle}>
-                    Now we begin to care of
+                    We will begin to care of
                     your plants with love.
                 </Text>
 
                 <View style={styles.footer}>
-                    <Button />
+                    <Button
+                        title="Start"
+                    />
                 </View>
 
             </View>
