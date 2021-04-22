@@ -6,7 +6,9 @@ import {
     Text,
     TextInput,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { Button } from '../components/Button';
@@ -48,39 +50,44 @@ export function UserIdentification() {
                 style={styles.container}
                 behavior={Platform.OS === 'android' ? 'height' : 'padding'}
             >
-                <View style={styles.content}>
-                    <View style={styles.form}>
-                        <View style={styles.header}>
-                            <Text style={styles.emoji}>
-                                {isFilled ? '😉' : '😎'}
-                            </Text>
 
-                            <Text style={styles.title}>
-                                How can we{'\n'}
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+
+                    <View style={styles.content}>
+                        <View style={styles.form}>
+                            <View style={styles.header}>
+                                <Text style={styles.emoji}>
+                                    {isFilled ? '😉' : '😎'}
+                                </Text>
+
+                                <Text style={styles.title}>
+                                    How can we{'\n'}
                             call you?
                         </Text>
-                        </View>
-                        <TextInput
-                            style={[
-                                styles.input,
-                                (isFocused || isFilled) &&
-                                { borderColor: colors.green }
-                            ]}
-                            placeholder="Type your name"
-                            onBlur={handleInputBlur}
-                            onFocus={handleInputFocus}
-                            onChangeText={handleInputChange}
-                        />
-                        <View style={styles.footer}>
-                            <Button
-                                title="Submit"
-                                onPress={handleSubmit}
+                            </View>
+                            <TextInput
+                                style={[
+                                    styles.input,
+                                    (isFocused || isFilled) &&
+                                    { borderColor: colors.green }
+                                ]}
+                                placeholder="Type your name"
+                                onBlur={handleInputBlur}
+                                onFocus={handleInputFocus}
+                                onChangeText={handleInputChange}
                             />
+                            <View style={styles.footer}>
+                                <Button
+                                    title="Submit"
+                                    onPress={handleSubmit}
+                                />
+                            </View>
+
                         </View>
 
                     </View>
-
-                </View>
+                </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
         </SafeAreaView>
     )
